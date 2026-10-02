@@ -1,0 +1,8 @@
+{
+  "name": "KidsToon Studio",
+  "description": "Plataforma profesional de producción audiovisual y publicación automatizada de dibujos animados infantiles para YouTube asistida por IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

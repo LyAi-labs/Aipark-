@@ -1,0 +1,78 @@
+<div class="flex h-screen w-screen flex-col overflow-hidden bg-zinc-950 text-zinc-100 font-sans">
+  <!-- Top Navigation & Status Bar -->
+  <app-topbar (openNewProjectWizard)="openWizard()"></app-topbar>
+
+  <!-- Main Body Layout: Sidebar + Active Studio View -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar Navigation -->
+    <app-sidebar (newProjectClick)="openWizard()"></app-sidebar>
+
+    <!-- Main Workspace Viewport -->
+    <main class="flex-1 overflow-y-auto bg-zinc-950 pb-12">
+      @switch (studio.activeSection()) {
+        @case ('dashboard') {
+          <app-dashboard-view (newProject)="openWizard()"></app-dashboard-view>
+        }
+        @case ('stories') {
+          <app-story-view></app-story-view>
+        }
+        @case ('characters') {
+          <app-characters-view></app-characters-view>
+        }
+        @case ('storyboard') {
+          <app-storyboard-view></app-storyboard-view>
+        }
+        @case ('voice') {
+          <app-voice-view></app-voice-view>
+        }
+        @case ('animation') {
+          <app-animation-editor-view></app-animation-editor-view>
+        }
+        @case ('rendering') {
+          <app-animation-editor-view></app-animation-editor-view>
+        }
+        @case ('qc') {
+          <app-qc-view></app-qc-view>
+        }
+        @case ('thumbnail') {
+          <app-thumbnail-view></app-thumbnail-view>
+        }
+        @case ('youtube') {
+          <app-youtube-view></app-youtube-view>
+        }
+        @case ('scheduled') {
+          <app-calendar-view></app-calendar-view>
+        }
+        @case ('calendar') {
+          <app-calendar-view></app-calendar-view>
+        }
+        @case ('analytics') {
+          <app-analytics-view></app-analytics-view>
+        }
+        @case ('library') {
+          <app-library-view></app-library-view>
+        }
+        @case ('series') {
+          <app-series-view (createEpisodeForSeries)="openWizard()"></app-series-view>
+        }
+        @case ('projects') {
+          <app-projects-list-view (newProject)="openWizard()"></app-projects-list-view>
+        }
+        @case ('settings') {
+          <app-settings-view></app-settings-view>
+        }
+        @default {
+          <app-dashboard-view (newProject)="openWizard()"></app-dashboard-view>
+        }
+      }
+    </main>
+  </div>
+
+  <!-- Wizard Modal -->
+  @if (isWizardOpen()) {
+    <app-wizard-modal (close)="closeWizard()" (created)="closeWizard()"></app-wizard-modal>
+  }
+
+  <!-- Strict API Cost Authorization Modal -->
+  <app-cost-modal></app-cost-modal>
+</div>
